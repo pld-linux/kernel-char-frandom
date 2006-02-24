@@ -1,0 +1,12 @@
+diff -dur -x '*~' frandom-0.8.orig/frandom.c frandom-0.8/frandom.c
+--- frandom-0.8.orig/frandom.c	2004-04-18 09:43:45.000000000 +0200
++++ frandom-0.8/frandom.c	2006-02-24 10:46:02.000000000 +0100
+@@ -188,7 +188,7 @@
+   
+ 	struct frandom_state *state;
+ 
+-	int num =MINOR(kdev_t_to_nr(inode->i_rdev));
++	int num =MINOR(inode->i_rdev);
+ 	if ((num != frandom_minor) && (num != erandom_minor)) return -ENODEV;
+   
+ 	state = kmalloc(sizeof(struct frandom_state), GFP_KERNEL);
