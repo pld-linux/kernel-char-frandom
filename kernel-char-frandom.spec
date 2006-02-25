@@ -3,9 +3,9 @@
 %bcond_without	dist_kernel	# allow non-distribution kernel
 %bcond_without	smp		# don't build SMP module
 %bcond_with	verbose		# verbose build (V=1)
-
-Summary:	A fast random number generator as a kernel module for Linux.
-Summary(pl):	Szybki genereator liczb pseudolosowych w postaci modu³u kernela.
+#
+Summary:	A fast random number generator as a kernel module for Linux
+Summary(pl):	Szybki genereator liczb pseudolosowych w postaci modu³u j±dra Linuksa
 Name:		kernel-char-frandom
 Version:	0.8
 %define		_rel	1
@@ -15,7 +15,7 @@ Group:		Base/Kernel
 Source0:	http://dl.sourceforge.net/frandom/frandom-%{version}.tar.gz
 # Source0-md5:	b46c48721ff545b80a28d8e03e0e3115
 Patch0:		%{name}-kdev_t.patch
-URL:		http://frandom.freedesktop.org/
+URL:		http://frandom.sourceforge.net/
 %{?with_dist_kernel:BuildRequires:	kernel-module-build >= 2.6.7}
 BuildRequires:	rpmbuild(macros) >= 1.217
 Requires(post,postun):	/sbin/depmod
@@ -26,13 +26,20 @@ Requires(postun):	%releq_kernel_up
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-frandom is a kernel module. It's the machinery between a special device driver,
-/dev/frandom, which behaves very much like /dev/urandom, only it creates data
-faster. Much faster. And it doesn't use much or any kernel entropy.
+frandom is a kernel module. It's the machinery between a special
+device driver, /dev/frandom, which behaves very much like
+/dev/urandom, only it creates data faster. Much faster. And it doesn't
+use much or any kernel entropy.
+
+%description -l pl
+frandom to modu³ j±dra stoj±cy za urz±dzeniem specjalnym /dev/frandom,
+które zachowuje siê bardzo podobnie do /dev/urandom, ale tworzy dane
+szybciej, du¿o szybciej. I nie zu¿ywa zbyt du¿o (lub wcale) entropii
+j±dra.
 
 %package -n kernel-smp-char-frandom
-Summary:	A fast random number generator as a SMP kernel module for Linux.
-Summary(pl):	Szybki genereator liczb pseudolosowych w postaci modu³u kernela SMP.
+Summary:	A fast random number generator as a SMP kernel module for Linux
+Summary(pl):	Szybki genereator liczb pseudolosowych w postaci modu³u j±dra Linuksa SMP
 Release:	%{_rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
 Requires(post,postun):	/sbin/depmod
@@ -42,8 +49,16 @@ Requires(postun):	%releq_kernel_smp
 %endif
 
 %description -n kernel-smp-char-frandom
-/dev/frandom, which behaves very much like /dev/urandom, only it creates data
-faster. Much faster. And it doesn't use much or any kernel entropy.
+frandom is a kernel module. It's the machinery between a special
+device driver, /dev/frandom, which behaves very much like
+/dev/urandom, only it creates data faster. Much faster. And it doesn't
+use much or any kernel entropy.
+
+%description -n kernel-smp-char-frandom -l pl
+frandom to modu³ j±dra stoj±cy za urz±dzeniem specjalnym /dev/frandom,
+które zachowuje siê bardzo podobnie do /dev/urandom, ale tworzy dane
+szybciej, du¿o szybciej. I nie zu¿ywa zbyt du¿o (lub wcale) entropii
+j±dra.
 
 %prep
 %setup -q -n frandom-%{version}
