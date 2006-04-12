@@ -124,6 +124,5 @@ rm -rf $RPM_BUILD_ROOT
 %files -n kernel-smp-char-frandom
 %defattr(644,root,root,755)
 %doc README CHANGELOG
-%defattr(644,root,root,755)
 /lib/modules/%{_kernel_ver}smp/char/*.ko*
 %endif
