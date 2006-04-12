@@ -4,11 +4,11 @@
 %bcond_without	smp		# don't build SMP module
 %bcond_with	verbose		# verbose build (V=1)
 #
+%define		_rel	1
 Summary:	A fast random number generator as a kernel module for Linux
 Summary(pl):	Szybki genereator liczb pseudolosowych w postaci modu³u j±dra Linuksa
 Name:		kernel-char-frandom
 Version:	0.8
-%define		_rel	1
 Release:	%{_rel}@%{_kernel_ver_str}
 License:	GPL v2
 Group:		Base/Kernel
@@ -16,7 +16,7 @@ Source0:	http://dl.sourceforge.net/frandom/frandom-%{version}.tar.gz
 # Source0-md5:	b46c48721ff545b80a28d8e03e0e3115
 Patch0:		%{name}-kdev_t.patch
 URL:		http://frandom.sourceforge.net/
-%{?with_dist_kernel:BuildRequires:	kernel-module-build >= 2.6.7}
+%{?with_dist_kernel:BuildRequires:	kernel-module-build >= 3:2.6.7}
 BuildRequires:	rpmbuild(macros) >= 1.217
 Requires(post,postun):	/sbin/depmod
 %if %{with dist_kernel}
@@ -122,6 +122,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %if %{with smp} && %{with dist_kernel}
 %files -n kernel-smp-char-frandom
+%defattr(644,root,root,755)
 %doc README CHANGELOG
 %defattr(644,root,root,755)
 /lib/modules/%{_kernel_ver}smp/char/*.ko*
