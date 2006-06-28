@@ -7,16 +7,17 @@
 %define		_rel	1
 Summary:	A fast random number generator as a kernel module for Linux
 Summary(pl):	Szybki genereator liczb pseudolosowych w postaci modu³u j±dra Linuksa
-Name:		kernel-char-frandom
+Name:		kernel%{_alt_kernel}-char-frandom
 Version:	0.8
 Release:	%{_rel}@%{_kernel_ver_str}
 License:	GPL v2
 Group:		Base/Kernel
 Source0:	http://dl.sourceforge.net/frandom/frandom-%{version}.tar.gz
 # Source0-md5:	b46c48721ff545b80a28d8e03e0e3115
-Patch0:		%{name}-kdev_t.patch
+Patch0:		kernel-char-frandom-kdev_t.patch
+Patch1:		kernel-char-frandom-module_parm.patch
 URL:		http://frandom.sourceforge.net/
-%{?with_dist_kernel:BuildRequires:	kernel-module-build >= 3:2.6.7}
+%{?with_dist_kernel:BuildRequires:	kernel%{_alt_kernel}-module-build >= 3:2.6.7}
 BuildRequires:	rpmbuild(macros) >= 1.217
 Requires(post,postun):	/sbin/depmod
 %if %{with dist_kernel}
@@ -37,7 +38,7 @@ które zachowuje siê bardzo podobnie do /dev/urandom, ale tworzy dane
 szybciej, du¿o szybciej. I nie zu¿ywa zbyt du¿o (lub wcale) entropii
 j±dra.
 
-%package -n kernel-smp-char-frandom
+%package -n kernel%{_alt_kernel}-smp-char-frandom
 Summary:	A fast random number generator as a SMP kernel module for Linux
 Summary(pl):	Szybki genereator liczb pseudolosowych w postaci modu³u j±dra Linuksa SMP
 Release:	%{_rel}@%{_kernel_ver_str}
@@ -48,13 +49,13 @@ Requires(post,postun):	/sbin/depmod
 Requires(postun):	%releq_kernel_smp
 %endif
 
-%description -n kernel-smp-char-frandom
+%description -n kernel%{_alt_kernel}-smp-char-frandom
 frandom is a kernel module. It's the machinery between a special
 device driver, /dev/frandom, which behaves very much like
 /dev/urandom, only it creates data faster. Much faster. And it doesn't
 use much or any kernel entropy.
 
-%description -n kernel-smp-char-frandom -l pl
+%description -n kernel%{_alt_kernel}-smp-char-frandom -l pl
 frandom to modu³ j±dra stoj±cy za urz±dzeniem specjalnym /dev/frandom,
 które zachowuje siê bardzo podobnie do /dev/urandom, ale tworzy dane
 szybciej, du¿o szybciej. I nie zu¿ywa zbyt du¿o (lub wcale) entropii
@@ -63,6 +64,7 @@ j±dra.
 %prep
 %setup -q -n frandom-%{version}
 %patch0 -p1
+%patch1 -p1
 ln -sf Makefile-2.6 Makefile
 
 %build
@@ -103,25 +105,25 @@ cp frandom-smp.ko \
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-n kernel-char-frandom
+%post
 %depmod %{_kernel_ver}
 
-%postun	-n kernel-char-frandom
+%postun
 %depmod %{_kernel_ver}
 
-%post	-n kernel-smp-char-frandom
+%post	-n kernel%{_alt_kernel}-smp-char-frandom
 %depmod %{_kernel_ver}smp
 
-%postun	-n kernel-smp-char-frandom
+%postun	-n kernel%{_alt_kernel}-smp-char-frandom
 %depmod %{_kernel_ver}smp
 
-%files -n kernel-char-frandom
+%files -n kernel%{_alt_kernel}-char-frandom
 %defattr(644,root,root,755)
 %doc README CHANGELOG
 /lib/modules/%{_kernel_ver}/char/*.ko*
 
 %if %{with smp} && %{with dist_kernel}
-%files -n kernel-smp-char-frandom
+%files -n kernel%{_alt_kernel}-smp-char-frandom
 %defattr(644,root,root,755)
 %doc README CHANGELOG
 /lib/modules/%{_kernel_ver}smp/char/*.ko*
