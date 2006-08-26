@@ -18,7 +18,7 @@ Patch0:		kernel-char-frandom-kdev_t.patch
 Patch1:		kernel-char-frandom-module_parm.patch
 URL:		http://frandom.sourceforge.net/
 %{?with_dist_kernel:BuildRequires:	kernel%{_alt_kernel}-module-build >= 3:2.6.7}
-BuildRequires:	rpmbuild(macros) >= 1.217
+BuildRequires:	rpmbuild(macros) >= 1.308
 Requires(post,postun):	/sbin/depmod
 %if %{with dist_kernel}
 %requires_releq_kernel_up
