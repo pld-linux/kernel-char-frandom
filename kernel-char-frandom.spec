@@ -6,7 +6,7 @@
 #
 %define		_rel	1
 Summary:	A fast random number generator as a kernel module for Linux
-Summary(pl):	Szybki genereator liczb pseudolosowych w postaci modu³u j±dra Linuksa
+Summary(pl.UTF-8):   Szybki genereator liczb pseudolosowych w postaci moduÅ‚u jÄ…dra Linuksa
 Name:		kernel%{_alt_kernel}-char-frandom
 Version:	0.8
 Release:	%{_rel}@%{_kernel_ver_str}
@@ -32,15 +32,15 @@ device driver, /dev/frandom, which behaves very much like
 /dev/urandom, only it creates data faster. Much faster. And it doesn't
 use much or any kernel entropy.
 
-%description -l pl
-frandom to modu³ j±dra stoj±cy za urz±dzeniem specjalnym /dev/frandom,
-które zachowuje siê bardzo podobnie do /dev/urandom, ale tworzy dane
-szybciej, du¿o szybciej. I nie zu¿ywa zbyt du¿o (lub wcale) entropii
-j±dra.
+%description -l pl.UTF-8
+frandom to moduÅ‚ jÄ…dra stojÄ…cy za urzÄ…dzeniem specjalnym /dev/frandom,
+ktÃ³re zachowuje siÄ™ bardzo podobnie do /dev/urandom, ale tworzy dane
+szybciej, duÅ¼o szybciej. I nie zuÅ¼ywa zbyt duÅ¼o (lub wcale) entropii
+jÄ…dra.
 
 %package -n kernel%{_alt_kernel}-smp-char-frandom
 Summary:	A fast random number generator as a SMP kernel module for Linux
-Summary(pl):	Szybki genereator liczb pseudolosowych w postaci modu³u j±dra Linuksa SMP
+Summary(pl.UTF-8):   Szybki genereator liczb pseudolosowych w postaci moduÅ‚u jÄ…dra Linuksa SMP
 Release:	%{_rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
 Requires(post,postun):	/sbin/depmod
@@ -55,11 +55,11 @@ device driver, /dev/frandom, which behaves very much like
 /dev/urandom, only it creates data faster. Much faster. And it doesn't
 use much or any kernel entropy.
 
-%description -n kernel%{_alt_kernel}-smp-char-frandom -l pl
-frandom to modu³ j±dra stoj±cy za urz±dzeniem specjalnym /dev/frandom,
-które zachowuje siê bardzo podobnie do /dev/urandom, ale tworzy dane
-szybciej, du¿o szybciej. I nie zu¿ywa zbyt du¿o (lub wcale) entropii
-j±dra.
+%description -n kernel%{_alt_kernel}-smp-char-frandom -l pl.UTF-8
+frandom to moduÅ‚ jÄ…dra stojÄ…cy za urzÄ…dzeniem specjalnym /dev/frandom,
+ktÃ³re zachowuje siÄ™ bardzo podobnie do /dev/urandom, ale tworzy dane
+szybciej, duÅ¼o szybciej. I nie zuÅ¼ywa zbyt duÅ¼o (lub wcale) entropii
+jÄ…dra.
 
 %prep
 %setup -q -n frandom-%{version}
