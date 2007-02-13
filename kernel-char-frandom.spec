@@ -6,7 +6,7 @@
 #
 %define		_rel	1
 Summary:	A fast random number generator as a kernel module for Linux
-Summary(pl.UTF-8):   Szybki genereator liczb pseudolosowych w postaci modułu jądra Linuksa
+Summary(pl.UTF-8):	Szybki genereator liczb pseudolosowych w postaci modułu jądra Linuksa
 Name:		kernel%{_alt_kernel}-char-frandom
 Version:	0.8
 Release:	%{_rel}@%{_kernel_ver_str}
@@ -40,7 +40,7 @@ jądra.
 
 %package -n kernel%{_alt_kernel}-smp-char-frandom
 Summary:	A fast random number generator as a SMP kernel module for Linux
-Summary(pl.UTF-8):   Szybki genereator liczb pseudolosowych w postaci modułu jądra Linuksa SMP
+Summary(pl.UTF-8):	Szybki genereator liczb pseudolosowych w postaci modułu jądra Linuksa SMP
 Release:	%{_rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
 Requires(post,postun):	/sbin/depmod
