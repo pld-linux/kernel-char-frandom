@@ -64,8 +64,8 @@ jądra.
 
 %prep
 %setup -q -n frandom-%{version}
-%patch0 -p1
-%patch1 -p1
+%patch -P0 -p1
+%patch -P1 -p1
 ln -sf Makefile-2.6 Makefile
 
 %build
